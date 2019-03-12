@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Weather</title>
+</head>
+<body>
+
+        <!-- <input type="text" name="search" placeholder="Seach Your City">
+        <input type="Submit" value="Search" class="btn btn-info"> -->
+        <h1><center>Weather Application</center></h1>
+
+        <form action="{{ url_for('index') }}" method="get">
+
+                <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="search" placeholder="Seach Your City" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                          <button class="btn btn-info" type="submit" value="Search" id="button-addon2">Search</button>
+                        </div>
+                </div>
+
+        </form>
+
+        
+
+        <span>
+        {% set x=weather["temp"]  %}
+        {% set celcius=(x-273.15) | round | int %}
+
+        {% if 0>celcius %}
+        <center>
+            <div class="card" style="width: 45%; height: 100%;">
+                <img src="{{url_for('static', filename='chilly.jpg')}}" class="card-img-top" alt="cold picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ celcius }} °C</h5>
+                    <p class="card-text">It's below freezing! dress up warm!</p>
+                    <a href="https://www.google.com/search?q=cold+weather+activities+near+me&rlz=1C1GCEB_enCA814CA814&oq=cold+weather+activities+near+me&aqs=chrome..69i57j0.5107j0j9&sourceid=chrome&ie=UTF-8" target="_blank" class="btn btn-primary">Activities!</a>
+                </div>
+            </div>
+        </center>
+        
+
+
+        {% elif 10>celcius %}
+        <center>
+            <div class="card" style="width: 45%; height: 100%;">
+                <img src="{{url_for('static', filename='warm.jpg')}}" class="card-img-top" alt="cold picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ celcius }} °C</h5>
+                    <p class="card-text">It'll be a bit chilly today, don't forget your jacket!</p>
+                    <a href="https://www.google.com/search?q=warm+weather+activities+near+me&rlz=1C1GCEB_enCA814CA814&oq=cold+weather+activities+near+me&aqs=chrome..69i57j0.5107j0j9&sourceid=chrome&ie=UTF-8" target="_blank" class="btn btn-primary">Activities!</a>
+                </div>
+            </div>
+        </center>
+        
+
+
+        {% elif 22>celcius %}
+        <center>
+            <div class="card" style="width: 45%; height: 100%;">
+                <img src="{{url_for('static', filename='hot.jpg')}}" class="card-img-top" alt="cold picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ celcius }} °C</h5>
+                    <p class="card-text">Warm weather ahead, don't forget sunscreen!</p>
+                    <a href="https://www.google.com/search?q=hot+weather+activities+near+me&rlz=1C1GCEB_enCA814CA814&oq=cold+weather+activities+near+me&aqs=chrome..69i57j0.5107j0j9&sourceid=chrome&ie=UTF-8" target="_blank" class="btn btn-primary">Activities!</a>
+                </div>
+            </div>
+        </center>
+            
+
+        {% elif 30>celcius %}
+        <center>
+            <div class="card" style="width: 45%; height: 100%;">
+                <img src="{{url_for('static', filename='hot.jpg')}}" class="card-img-top" alt="cold picture">
+                <div class="card-body">
+                    <h5 class="card-title">{{ celcius }} °C</h5>
+                    <p class="card-text">It's Really Hot! Spend a day in the pool!</p>
+                    <a href="https://www.google.com/search?q=home+activities+to+do+in+summer&rlz=1C1GCEB_enCA814CA814&oq=cold+weather+activities+near+me&aqs=chrome..69i57j0.5107j0j9&sourceid=chrome&ie=UTF-8" target="_blank" class="btn btn-primary">Activities!</a>
+                </div>
+            </div>
+        </center>
+        {% endif %}
+
+<!-- 
+        <div class="card" style="width: 18rem;">
+            <img src="{{url_for('static', filename='twitter.svg')}}" class="card-img-top" alt="cold picture">
+            <div class="card-body">
+                <h5 class="card-title">#Weather</h5>
+                <p class="card-text">See Whats Trending!</p>
+                <a href="https://twitter.com/hashtag/weather" target="_blank" class="btn btn-primary">Trending!</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 18rem;">
+            <img src="{{url_for('static', filename='twitter.svg')}}" class="card-img-top" alt="cold picture">
+            <div class="card-body">
+                <h5 class="card-title">Thinking of Staying Indoors?</h5>
+                <p class="card-text">See Whats Trending!</p>
+                <a href="https://twitter.com/hashtag/weather" target="_blank" class="btn btn-primary">Trending!</a>
+            </div>
+        </div> -->
+
+
+
+
+
+
+
+
+
+    </span>
+
+
+
+
+
+
+</body>
+</html>
