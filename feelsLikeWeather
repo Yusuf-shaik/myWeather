@@ -1,0 +1,66 @@
+import sys
+import requests
+import math
+
+search = "whitby"
+
+link = "http://api.openweathermap.org/data/2.5/weather?q={}&appid=###___API_KEY_HERE___###".format(search)
+
+
+response = requests.get(link)
+response=response.json()
+# print(response)
+if response['cod']=="404":
+	print("City Not Found")
+	exit()
+
+# print(response['cod'])
+
+weather = response['main']['temp']-273.15
+
+windSpeed=response['wind']['speed']
+
+humidity=response['main']['humidity']
+
+
+description=response['weather'][0]['description']
+# humidity =response['main']['humidity']
+# weather = "hey"
+
+def calcE(H,Ta):
+	exponent=((17.27*Ta)/(237.7+Ta))
+	e=(H/100)*6.105*math.exp(exponent)
+	return e
+
+
+def FeelsLikeWeather(Ta,Ws,argE):
+	FLW=Ta+0.348*argE-0.70*Ws-4.25
+	FLW=math.floor(FLW)
+	return FLW
+
+if isinstance(weather, float):
+	# weather=str(round(weather))
+	# print(weather + " Degrees Celcius in {}".format(search))
+	# print(description)
+	# print(weather	)
+
+
+
+	# print(windSpeed)
+	# print(humidity)
+
+	# print("e")
+	thisE=calcE(humidity, weather)
+	# print(thisE)
+	message="The weather in {} is ".format(search) + str(FeelsLikeWeather(weather,windSpeed,thisE)) + " Degrees Celcius"
+	print("FLW")
+	print(message)
+
+	print()
+
+	# print()"The weather in {} is".format(search)+ str(message) + "Degrees Celcius"
+
+else:
+	print("Sorry, no city found")
+	
+
